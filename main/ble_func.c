@@ -6,6 +6,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 
+#include "esp_mac.h"
 #include "gatt_svr.h"
 #include "hid_func.h"
 
@@ -331,7 +332,9 @@ void ble_store_config_init(void);
 void
 ble_init()
 {
+#if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 0, 0)
     ESP_ERROR_CHECK(esp_nimble_hci_and_controller_init());
+#endif
 
     nimble_port_init();
     /* Initialize the NimBLE host configuration. */

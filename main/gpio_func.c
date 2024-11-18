@@ -4,6 +4,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "freertos/semphr.h"
+#include "rom/gpio.h"
 #include "driver/gpio.h"
 
 #include "gpio_func.h"
