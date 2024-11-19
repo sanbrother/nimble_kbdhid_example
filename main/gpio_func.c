@@ -53,10 +53,15 @@ static struct kbd_button {
     // last state of the button
     uint32_t last_state;
 } Hid_buttons[] = {
+#if CONFIG_IDF_TARGET_ESP32C3
+    { .gpio = 9, .hid_button = HID_CONSUMER_VOLUME_DOWN    | BUTTON_TYPE_CC },
+    { .gpio = 6, .hid_button = HID_CONSUMER_VOLUME_UP      | BUTTON_TYPE_CC },
+#else
     { .gpio = 13, .hid_button = HID_CONSUMER_VOLUME_DOWN    | BUTTON_TYPE_CC },
     { .gpio = 12, .hid_button = HID_CONSUMER_VOLUME_UP      | BUTTON_TYPE_CC },
     // { .gpio = 13, .hid_button = HID_KEY_LEFT_ARROW          | BUTTON_TYPE_KEYBOARD },
     // { .gpio = 12, .hid_button = HID_KEY_RIGHT_ARROW         | BUTTON_TYPE_KEYBOARD },
+#endif
 };
 static int Hid_buttons_count = sizeof(Hid_buttons)/sizeof(Hid_buttons[0]);
 
